@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../../SideBar';
 import DefaultLayout from '../defaultLayout';
 
 const AdminLayout = (props) => {
     const [currentClass, setCurrentClass] = useState('');
-    const [width, setWidth] = useState(0);
-    
-    useEffect(() => {
-        setWidth(window.innerWidth);
-    }, [])
 
     const menus = [
         {
             title: "Class",
-            link: "/class/" + currentClass
+            link: "/class"
         },
         {
-            title: "Users",
-            link: "/users"
+            title: "Class Representative",
+            link: "/class-representative"
+        },
+        {
+            title: "User",
+            link: "/user"
         }
     ]
     
     return(
-        <DefaultLayout>
-            <div className="flex-row justify-start">
-                <Sidebar menus={ menus } />
-                <div style={{width: (width - (width * 18/100)) + "px"}}>
-                    { props.children }
-                </div>
-            </div>
+        <DefaultLayout menus={ menus }>
         </DefaultLayout>
     );
 }

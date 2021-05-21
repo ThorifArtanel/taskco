@@ -5,7 +5,7 @@ import Dashboard from './views/Dashboard';
 // import AdminDashboard from './views/Dashboard/AdminDashboard';
 // import UserDashboard from './views/Dashboard/UserDashboard';
 import LandingPage from './views/LandingPage';
-import LoginPage from './views/LoginPage';
+import Login from './views/Login';
 
 const RootRouter = () =>{
   return(
@@ -15,7 +15,7 @@ const RootRouter = () =>{
         <Dashboard></Dashboard>
       </Route>
       <Route path='/login'>
-        <LoginPage/>
+        <Login/>
       </Route>
       <Route path='/' exact={ true }>
         <LandingPage/>

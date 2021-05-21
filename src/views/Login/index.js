@@ -7,7 +7,7 @@ import AuthService from '../../services/Auth.service';
 import UserService from '../../services/User.service';
 import { UserContext } from '../../services/UserContext';
 
-const LoginPage = (props) => {
+const Login = (props) => {
     const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -51,6 +51,7 @@ const LoginPage = (props) => {
                         type="text"
                         onChange={ updateUsername } 
                         value={ username }
+                        placeholder="NIM"
                     />
                     <Input 
                         type="password"
@@ -66,4 +67,4 @@ const LoginPage = (props) => {
     )
 }
 
-export default LoginPage;
+export default Login;

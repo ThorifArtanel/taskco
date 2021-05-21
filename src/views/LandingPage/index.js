@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import TopBar from '../../components/TopBar';
+import TopBar from '../../components/Topbar';
 
 const LandingPage = (props) => {
     const history = useHistory();
