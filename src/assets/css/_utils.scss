@@ -1,5 +1,5 @@
-$width: 20, 60, 80, 100;
-$padding: 5, 10, 15, 20, 40;
+$width: 20, 30, 40, 50, 60, 70, 80, 90, 100;
+$padding: 5, 10, 15, 20, 30, 40, 50;
 $font: 16, 18, 20, 24, 32, 38, 40;
 
 .flex-row{
@@ -12,13 +12,31 @@ $font: 16, 18, 20, 24, 32, 38, 40;
     justify-content: flex-start;
 }
 
+.justify-end{
+    justify-content: flex-end;
+}
+.justify-between{
+    justify-content: space-between;
+}
+
 .flex-col{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.flex-align-baseline{
+.self-center{
+    align-self: center;
+}
+.self-end{
+    align-self: end;
+}
+
+.flex-center{
+    align-items: center;
+}
+
+.flex-baseline{
     align-items: baseline;
 }
 
@@ -39,6 +57,10 @@ $font: 16, 18, 20, 24, 32, 38, 40;
 }
 .width-fit{
     width: fit-content;
+}
+
+.margin-auto{
+    margin: auto;
 }
 
 @each $item in $padding{
@@ -73,4 +95,20 @@ $font: 16, 18, 20, 24, 32, 38, 40;
     .font-size-#{$item} {
         font-size: $item + px;
     }
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.bg-red{
+    background-color: $red !important;
+}
+
+.bg-green{
+    background-color: $green !important;
 }

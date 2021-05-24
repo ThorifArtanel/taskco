@@ -1,26 +1,42 @@
 import React, { useEffect, useState } from 'react';
+import Sidebar from '../../Sidebar';
 import DefaultLayout from '../defaultLayout';
 
 const AdminLayout = (props) => {
     const [currentClass, setCurrentClass] = useState('');
+    const [width, setWidth] = useState(0);
+    
+    useEffect(() => {
+        setWidth(window.innerWidth);
+    }, [])
 
     const menus = [
         {
             title: "Class",
-            link: "/class"
+            link: "/admin/class"
         },
         {
             title: "Class Representative",
-            link: "/class-representative"
+            link: "/admin/class-representative"
         },
         {
             title: "User",
-            link: "/user"
+            link: "/admin/user"
         }
     ]
     
     return(
-        <DefaultLayout menus={ menus }>
+        <DefaultLayout>
+            <Sidebar menus={ menus }/>
+            <div
+                className="px-20 py-20"
+                style={{
+                    width: "100%", 
+                    marginLeft: width * 18/100 + "px"
+                }}
+            >
+                { props.children }
+            </div>
         </DefaultLayout>
     );
 }
