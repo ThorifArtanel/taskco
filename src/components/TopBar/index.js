@@ -9,7 +9,7 @@ const TopBar = React.forwardRef((props,ref) => {
                 <h3 className="width-fit font-size-24">TaskCo</h3>
             </a>
             
-            <Button action = { props.buttonAction }>
+            <Button onClick={ props.buttonOnClick }>
                 {props.children}
             </Button>
         </div>

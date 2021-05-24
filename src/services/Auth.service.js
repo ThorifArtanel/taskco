@@ -17,12 +17,11 @@ class AuthService{
     //   return response.data;
   }
 
+  async register(username, password){
+  }
+  
   logout(){
     localStorage.removeItem("user");
-  }
-
-  getCurrentUser(){
-    return JSON.parse(localStorage.getItem("user"));
   }
 }
 

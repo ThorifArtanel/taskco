@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import TopBar from '../TopBar';
+import TopBar from '../Topbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../../services/UserContext';
@@ -7,12 +7,13 @@ import { LayoutContext } from './layoutContext';
 
 const DefaultLayout = (props) => {
     const [user, setUser] = useContext(UserContext);
-    const userData = user.userData;
+    const userData = user;
 
     const [layout, setLayout] = useContext(LayoutContext);
     let layoutTemp = layout;
     const [height, setHeight] = useState(0);
     const bar = useRef(null);
+
 
     useEffect(() => {
         setHeight(bar.current.clientHeight);
@@ -20,20 +21,22 @@ const DefaultLayout = (props) => {
         setLayout(layoutTemp);
     }, [height, layoutTemp, setLayout]);
 
-    const showExit = () => {
+    const showLogout = () => {
 
     }
 
     return(
         <div>
-            <TopBar buttonAction={ showExit } ref = { bar }>
-                <FontAwesomeIcon icon={ faUserCircle } /> {userData.displayName}
+            <TopBar buttonOnClick={ showLogout } ref = { bar }>
+                <FontAwesomeIcon icon={ faUserCircle } /> { userData.name || "Name" }
             </TopBar>
             <div
                 className="main-container"
                 style={{marginTop: height + 'px'}}
             >
-                { props.children }
+                <div className="flex-row justify-start">
+                    { props.children }
+            </div>
             </div>
         </div>
     );

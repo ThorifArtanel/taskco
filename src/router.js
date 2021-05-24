@@ -1,28 +1,33 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-// import UserService from './services/User.service';
-import Dashboard from './views/Dashboard';
-// import AdminDashboard from './views/Dashboard/AdminDashboard';
-// import UserDashboard from './views/Dashboard/UserDashboard';
+import UserService from './services/User.service';
+import Profile from './views/Profile';
 import LandingPage from './views/LandingPage';
-import LoginPage from './views/LoginPage';
+import AdminClass from './views/admin/Class';
+import Login from './views/Login';
+import AdminService from './services/Admin.service';
+import Register from './views/Register';
+import NotFound from './views/NotFound';
+import AdminClassRepresentative from './views/admin/ClassRepresentative';
+import AdminUser from './views/admin/User';
+import AdminUserEdit from './views/admin/User/UserEdit';
 
 const RootRouter = () =>{
   return(
     <Switch>
-      <Route path='/dashboard'>
-        {/* {() => {UserService.isLoggedIn ? <UserDashboard/> : <AdminDashboard/>}} /> */}
-        <Dashboard></Dashboard>
-      </Route>
-      <Route path='/login'>
-        <LoginPage/>
-      </Route>
-      <Route path='/' exact={ true }>
-        <LandingPage/>
-      </Route>
-      <Route path='*'>
-        <div>Error 404</div>
-      </Route>
+      <Route path='/' exact={true} component={ LandingPage } />
+      {/* User Routers */}
+      <Route path='/profile' exact={true} component={ UserService.isLoggedIn(Profile) } />
+
+      {/* Admin Routers */}
+      <Route path='/admin/class' exact={true} component={ AdminService.isLoggedIn(AdminClass) } />
+      <Route path='/admin/class-representative' exact={true} component={ AdminService.isLoggedIn(AdminClassRepresentative) } />
+      <Route path='/admin/user' exact={true} component={ AdminService.isLoggedIn(AdminUser) } />
+      <Route path='/admin/user/:userNIM' component={ AdminService.isLoggedIn(AdminUserEdit) } />
+      
+      <Route path='/register' exact={true} component={ Register }/>
+      <Route path='/login' exact={true} component={ Login }/>
+      <Route path='*' component={ NotFound }/>
     </Switch>
   )
 }

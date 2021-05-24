@@ -1,18 +1,17 @@
 import React from 'react';
 
-const Button = (props) => {
-    
+const Card = (props) => {
     return(
-        <button
-            className = { props.className || "default-button" }
+        <div
+            className = { props.className || "default-card" }
             id = { props.id }
             type = { props.type }
             style = { props.style }
             onClick = { props.onClick }
         >
             { props.children }
-        </button>
+        </div>
     );
 }
 
-export default Button;
+export default Card;
