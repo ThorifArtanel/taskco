@@ -12,6 +12,7 @@ export const ClassProvider = (props) => {
         student_id: "",
         class_name: "",
         class_year: "",
+        class_member: 0,
     });
 
     return(

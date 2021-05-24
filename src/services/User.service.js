@@ -86,6 +86,16 @@ class UserService{
   updatePassword(student_id){
     const response = axios.post(API_URL + 'student?student_id=' + student_id);
   }
+
+  async getNotes(){
+    const response = await axios.get(API_URL + 'note');
+    console.log(response);
+    return response.data;
+  }
+
+  createNote(){
+    return
+  }
 }
 
 export default new UserService();

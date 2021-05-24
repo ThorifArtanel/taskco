@@ -66,12 +66,6 @@ const Login = (props) => {
 
     }
 
-    const interval = () => {
-        setInterval(() => {
-            
-        }, 1000);
-    }
-
     const check = () => {
         if (!(username.length > 0) && !(password.length > 0)){
             alert("NIM or Password field is empty");
@@ -91,7 +85,7 @@ const Login = (props) => {
     return(
         <div>
             <DefaultLayout>
-                    <form  className="margin-auto my-40 width-40">
+                    <div  className="margin-auto my-40 width-40">
                         <div className="flex-col">
                             <div className="title-big text-center my-40 red-rose">
                                 Login
@@ -110,14 +104,14 @@ const Login = (props) => {
                                 value={ password }
                                 placeholder="Password"
                                 />
+                            <Button onClick={() => login()}  className="default-button my-10 width-30 self-center">
+                                Login
+                            </Button>
                             <div className="my-10 self-center">
                                 Belum punya akun? <a href="/register">Daftar</a>
                             </div>
                         </div>
-                    </form>
-                            <Button onClick={() => { login() }}  className="default-button my-10 width-30 self-center">
-                                Login
-                            </Button>
+                    </div>
             </DefaultLayout>
         </div>
     )

@@ -24,5 +24,21 @@
             "class_id": "C2POW19",
             "class_representative": true
         }
-    ]
+    ],
+    "note": [
+        {
+          "note_id": "01872",
+          "note_name": "Judul",
+          "note_desc": "Lorem ipsum un dolor sit amet",
+          "note_timestamp": "04-20-2021",
+          "publicity": true
+        },
+        {
+          "note_id": "as2344",
+          "note_name": "Judul 2",
+          "note_desc": "Lorem ipsum dah ah males",
+          "note_timestamp": "05-01-2021",
+          "publicity": false
+        }
+      ]
 }

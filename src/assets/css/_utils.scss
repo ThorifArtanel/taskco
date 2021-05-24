@@ -50,6 +50,10 @@ $font: 16, 18, 20, 24, 32, 38, 40;
     letter-spacing: 3px;
 }
 
+.light{
+    font-weight: 400;
+}
+
 @each $item in $width{
     .width-#{$item} {
         width: $item * 1%;
@@ -112,3 +116,4 @@ $font: 16, 18, 20, 24, 32, 38, 40;
 .bg-green{
     background-color: $green !important;
 }
+

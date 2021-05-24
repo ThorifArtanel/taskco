@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { ClassContext } from '../../../services/ClassContext';
+import UserService from '../../../services/User.service';
+import { UserContext } from '../../../services/UserContext';
 import Sidebar from '../../Sidebar';
 import DefaultLayout from '../defaultLayout';
 
 const UserLayout = (props) => {
-    const [currentClass, setCurrentClass] = useState('');
+    const [user, setUser] = useContext(UserContext);
     const [width, setWidth] = useState(0);
     
     useEffect(() => {
@@ -12,18 +15,25 @@ const UserLayout = (props) => {
 
     const menus = [
         {
-            title: "Class",
-            link: "/class/" + currentClass
-        },
-        {
             title: "Profile",
             link: "/profile"
+        },
+        {
+            title: "Class",
+            link: "/class"
         },
         {
             title: "Note",
             link: "/note"
         }
-    ]
+    ];
+    
+    if(user.userType === "admin"){
+        menus.push({
+            title: "Setting",
+            link: "/setting"
+        });
+    }
     
     return(
         <DefaultLayout>

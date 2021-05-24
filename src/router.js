@@ -12,6 +12,8 @@ import AdminClassRepresentative from './views/admin/ClassRepresentative';
 import AdminUser from './views/admin/User';
 import AdminUserEdit from './views/admin/User/UserEdit';
 import ChangePassword from './views/Profile/ChangePassword';
+import Class from './views/Class';
+import Note from './views/Note';
 
 const RootRouter = () =>{
   return(
@@ -20,6 +22,10 @@ const RootRouter = () =>{
       {/* User Routers */}
       <Route path='/profile' exact={true} component={ UserService.isLoggedIn(Profile) } />
       <Route path='/profile/change-password' exact={true} component={ UserService.isLoggedIn(ChangePassword) } />
+      <Route path='/class' exact={true} component={ UserService.isLoggedIn(Class) } />
+      {/* <Route path='/class/:class_id' component={ UserService.isLoggedIn(Class) } /> */}
+      <Route path='/note' exact={true} component={ UserService.isLoggedIn(Note) } />
+      {/* <Route path='/note/:note_id' component={ UserService.isLoggedIn(Note) } /> */}
 
       {/* Admin Routers */}
       <Route path='/admin/class' exact={true} component={ AdminService.isLoggedIn(AdminClass) } />

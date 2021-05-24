@@ -1,9 +1,13 @@
 import axios from 'axios';
+// import bcrypt from 'bcrypt';
 
 const API_URL = 'http://127.0.0.1:4000/';
+const kagi = "AyshaHasnaIzzaThorif";
+// const saltRounds
 
 class AuthService{
   async login(username, password){
+    // const hash = await bcrypt.hash(password+kagi, saltRounds);
     const response = await axios.get(API_URL + 'user?username=' + username);
     // await axios({
     //   url: API_URL + 'user?username=' + username,

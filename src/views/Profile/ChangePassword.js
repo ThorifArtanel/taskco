@@ -5,22 +5,20 @@ import Card from '../../components/card';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import UserService from '../../services/User.service';
-import Person from '../../assets/img/person.svg';
-import TextArea from '../../components/textArea';
 import { useHistory } from 'react-router';
 
 const ChangePassword = (props) => {
+    const history = useHistory();
     const [user] = useContext(UserContext);
-    const [oldPassword, setOldPassword] =useState('');
-    const [newPassword, setNewPassword] =useState('');
-    const [reNewPassword, setReNewPassword] =useState('');
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [reNewPassword, setReNewPassword] = useState('');
     
-    useEffect(() => {
-        // setUser(UserService.getCurrentUser());
-    },[user])
+    
 
     const updatePassword = () => {
-        UserService.updatePassword(user.student_id)
+        UserService.updatePassword(user.student_id);
+        history.goBack();
     }
 
     const updateOldPassword = (e) => {
