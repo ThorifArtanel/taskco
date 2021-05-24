@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import Button from '../../components/button';
@@ -12,24 +13,48 @@ import { UserContext } from '../../services/UserContext';
 
 const Login = (props) => {
     const history = useHistory();
-    
+    const API_URL = 'http://127.0.0.1:4000/';
     const [user, setUser] = useContext(UserContext);
     const [clas, setClass] = useContext(ClassContext);
-    let userData = user.userData;
-
-    const [username, setUsername] = useState('');
+    
+    const [username, setUsername] = useState("1900011");
     const [password, setPassword] = useState('');
     
+    const save = async () => {
+        await axios({
+            url: API_URL + 'student?student_id=' + username,
+            method: "get",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
+        .then(response => {
+            setUser({
+                isLoggedIn: true,
+                userType: password || 'user',
+                userData: response.data[0]
+            });
+        });
+    }
     
-    const login = (e) => {
+    const login = async (e) => {
         // e.preventDefault();
         let auth = AuthService.login(username, password) && check();
         if(auth){
-            setUser(() => UserService.getUser(username));
-            setClass(() => ClassService.getClass(userData.class_id));
+            // save();
+            let user = await UserService.getUser(username);
+            let userData = user.userData;
+            console.log(user);
+            let clas = ClassService.getClass(userData.class_id);
+            
+            await setUser(user);
+            setClass(clas);
             
             UserService.saveCurrentUser(user);
             ClassService.saveCurrentClass(clas);
+            // console.log(user);
 
             if(user.userType === "admin"){
                 history.replace('/admin/class');
@@ -39,6 +64,12 @@ const Login = (props) => {
             }
         }
 
+    }
+
+    const interval = () => {
+        setInterval(() => {
+            
+        }, 1000);
     }
 
     const check = () => {
@@ -84,7 +115,7 @@ const Login = (props) => {
                             </div>
                         </div>
                     </form>
-                            <Button onClick={() => { login() }} className="default-button my-10 width-30 self-center">
+                            <Button onClick={() => { login() }}  className="default-button my-10 width-30 self-center">
                                 Login
                             </Button>
             </DefaultLayout>

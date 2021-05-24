@@ -21,7 +21,6 @@ export const UserProvider = (props) => {
             class_representative: false,
         }
     });
-    console.log(user);
 
     return(
         <UserContext.Provider value={ [user, setUser] }>

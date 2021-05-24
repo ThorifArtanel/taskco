@@ -29,7 +29,7 @@ $font: 16, 18, 20, 24, 32, 38, 40;
     align-self: center;
 }
 .self-end{
-    align-self: end;
+    align-self: flex-end;
 }
 
 .flex-center{
@@ -79,15 +79,15 @@ $font: 16, 18, 20, 24, 32, 38, 40;
 
 @each $item in $padding{
     .px-#{$item} {
-        padding-left: $item + px;
-        padding-right: $item + px;
+        padding-left: $item + px !important;
+        padding-right: $item + px !important;
     }
 }
 
 @each $item in $padding{
     .py-#{$item} {
-        padding-top: $item + px;
-        padding-bottom: $item + px;
+        padding-top: $item + px !important;
+        padding-bottom: $item + px !important;
     }
 }
 

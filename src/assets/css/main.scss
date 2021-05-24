@@ -18,7 +18,8 @@ body{
 
 .sidebar{
     width: 18%;
-    position: absolute;
+    position: fixed;
+    height: auto;
     top: 45px;
     bottom: 0;
     background-color: $tertiaryColor;
@@ -70,7 +71,7 @@ body{
 .default-button{
     background-color: $grey;
     color: $white;
-    padding: 8px 16px;
+    padding: 8px 24px;
     border-radius: 8px;
     border: none;
 }
@@ -84,6 +85,7 @@ body{
     padding: 8px 16px;
     border: solid 1px $grey;
     border-radius: 8px;
+    font-weight: 400;
 }
 
 .default-card{

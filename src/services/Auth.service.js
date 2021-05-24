@@ -1,20 +1,28 @@
 import axios from 'axios';
 
-const API_URL = '/api/auth/';
+const API_URL = 'http://127.0.0.1:4000/';
 
 class AuthService{
   async login(username, password){
-    // const response = await axios
-    //       .post(API_URL + 'login', {
-    //           username,
-    //           password
-    //       });
-    //   if (response.data.accessToken) {
-    //       localStorage.setItem('user', JSON.stringify(response.data));
+    const response = await axios.get(API_URL + 'user?username=' + username);
+    // await axios({
+    //   url: API_URL + 'user?username=' + username,
+    //   method: "get",
+    //   headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json',
+    //       'Access-Control-Allow-Origin': '*'
     //   }
-      localStorage.setItem('login', true);
+    // })
+    if(response.data[0].password === password){
+      
       return true;
-    //   return response.data;
+    }
+
+    // if (response.data.accessToken) {
+    //     localStorage.setItem('user', JSON.stringify(response.data));
+    // }
+      // localStorage.setItem('login', true);
   }
 
   async register(username, password){
