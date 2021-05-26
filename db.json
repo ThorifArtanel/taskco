@@ -43,6 +43,26 @@
       "member_number": 43
     }
   ],
+  "classMember":[
+    {
+        "student_id": "1908283",
+        "student_name": "Mhs D"
+    },
+    {
+        "student_id": "1908124",
+        "student_name": "Mhs L"
+    }
+  ],
+  "classMemberReq": [
+    {
+        "student_id": "1907381",
+        "student_name": "Mhs G"
+    },
+    {
+        "student_id": "1906263",
+        "student_name": "Mhs O"
+    }
+  ],
   "note": [
     {
       "note_id": "01872",

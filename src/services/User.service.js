@@ -27,9 +27,14 @@ class UserService{
     return Auth;
   }
 
-  getTimestamp(){
-    var now = new Date();
-    return dateFormat(now, "dd-mm-yyyy");
+  getTimestamp(date){
+    let time = date ? new Date(date) : new Date();
+    return dateFormat(time, "dd-mm-yyyy");
+  }
+
+  getTimeISO(date){
+    let f = date.split('-');
+    return f[2] + "-" + f[1] + "-" + f[0];
   }
   
   async getUser(username){

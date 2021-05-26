@@ -42,11 +42,11 @@ const Class = (props) => {
     }
 
     return(
-        <div>
-            <UserLayout>
+        <UserLayout>
+            <div className="mx-30">
                 <div className="title px-10 py-10">Kelas Anda</div>
                     { userTemp.class_id === "" ?
-                    (<div className="px-30 py-50 flex-row justify-between flex-start">
+                    <div className="px-30 py-50 flex-row justify-between flex-start">
                         <div className="margin-auto flex-col">
                             <div className="flex-row flex-center">
                                 <div className="my-10 mx-10">Kode Kelas</div>
@@ -63,7 +63,7 @@ const Class = (props) => {
                                 Masuk Kelas
                             </Button>
                         </div>
-                    </div>)
+                    </div>
                     :
                     (<Card
                         className="px-30 py-30 violet-card flex-col justify-between flex-start"
@@ -79,8 +79,8 @@ const Class = (props) => {
                             <FontAwesomeIcon className="mx-10" icon={ faUserCircle } size="lg" /> { clas.member_number } Member
                         </div>
                     </Card>)}
-            </UserLayout>
-        </div>
+            </div>
+        </UserLayout>
     );
 }
 

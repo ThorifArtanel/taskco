@@ -27,7 +27,7 @@ const UserLayout = (props) => {
         }
     ];
     
-    if(user.userType === "admin"){
+    if(user.userData.class_representative === true){
         menus.push({
             title: "Setting",
             link: "/setting"

@@ -18,6 +18,8 @@ import ClassView from './views/Class/ClassView';
 import Schedule from './views/Class/Schedule';
 import Deadline from './views/Class/Deadline';
 import DeadlineView from './views/Class/DeadlineView';
+import Setting from './views/Setting';
+import SettingClass from './views/Setting/SettingClass';
 
 const RootRouter = () =>{
   return(
@@ -33,6 +35,8 @@ const RootRouter = () =>{
       <Route path='/class/:class_id' exact component={ UserService.isLoggedIn(ClassView) } />
       <Route path='/note' exact component={ UserService.isLoggedIn(Note) } />
       <Route path='/note/:note_id' exact component={ UserService.isLoggedIn(NoteView) } />
+      <Route path='/setting' exact component={ UserService.isLoggedIn(Setting) } />
+      <Route path='/setting/class' exact component={ UserService.isLoggedIn(SettingClass) } />
 
       {/* Admin Routers */}
       <Route path='/admin/class' exact component={ AdminService.isLoggedIn(AdminClass) } />

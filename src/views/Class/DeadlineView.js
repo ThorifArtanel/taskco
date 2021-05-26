@@ -31,7 +31,7 @@ const DeadlineView = () => {
     const editDeadline = () => {
         setDeadlineName(deadline.cl_assignment_name);
         setDeadlineDesc(deadline.cl_assignment_desc);
-        setDeadlineEnd(deadline.cl_assignment_end);
+        setDeadlineEnd( UserService.getTimeISO(deadline.cl_assignment_end));
         setEditStatus(true);
     }
 
@@ -43,19 +43,38 @@ const DeadlineView = () => {
         setDeadlineName(e.target.value);
     }
 
+    const updateDeadlineEnd = (e) => {
+        // console.log(e.target.value);
+        setDeadlineEnd(e.target.value);
+    }
+
+
+
+    const upload = () => {
+
+    }
+
+    const download = () => {
+
+    }
+
     const saveDeadline = () => {
         setDeadline({
             cl_assignment_id: deadline.cl_assignment_id,
             cl_assignment_name: deadlineName,
             cl_assignment_desc: deadlineDesc,
             cl_assignment_start: UserService.getTimestamp(),
-            cl_assignment_end: deadlineEnd
+            cl_assignment_end: UserService.getTimestamp(deadlineEnd)
         });
         UserService.updateDeadline(deadline);
     }
 
+    const deleteDeadline = () => {
+        ClassService.deleteDeadline(deadline_id);
+    }
+
     return(
-        <UserLayout>
+        <UserLayout className="flex-col">
         {
         editStatus ?
             <>
@@ -69,20 +88,34 @@ const DeadlineView = () => {
                     <div className="flex-row flex-center mx-10">
                         <Button onClick={ () => history.goBack() }>
                             Kembali
+                            {/* { UserService.getTimestamp() } */}
                         </Button>
                     </div>
                 </div>
+                <Input
+                    className="default-input my-10 px-20 py-20"
+                    type="date"
+                    value={ deadlineEnd }
+                    onChange={ updateDeadlineEnd }
+                />
                 <TextArea
                     className="default-input my-10 px-20 py-20"
                     value={ deadlineDesc }
                     onChange={ updateDeadlineDesc }
                     rows="18"
-                    />
+                />
+                <Card
+                    className="default-input px-20 py-20 my-10"
+                >   
+                    <Button onClick={ upload }>
+                        Upload
+                    </Button>
+                </Card>
                 <Button
                     className="default-button my-10 self-end"
                     onClick={ saveDeadline }
                 >
-                    Save
+                    Simpan
                 </Button>
             </div>
             </>
@@ -104,26 +137,33 @@ const DeadlineView = () => {
                     </Button>
                 </div>
             </div>
-            <Card>
-                <div className="mx-30 my-10">
-                    <Card className="default-card bg-grey white title-little light self-start width-fit">
+            <Card className="default-card flex-col mx-30 py-20">
+                <div className="flex-row flex-center mx-30 my-10">
+                    <div className="title-little light my-10">
+                        Deskripsi
+                    </div>
+                    <Card className="default-card bg-grey white light width-fit">
                         { deadline.cl_assignment_end }
                     </Card>
-                </div>
-                <div className="title-little light mx-30 my-10">
-                    Deskripsi
                 </div>
                 <TextArea
                     className="default-input width-90 mx-30 px-20 py-20 my-10"
                     value={ deadline.cl_assignment_desc }
                     readOnly={ true }
                     rows="20"
-                    />
+                />
                 <Card
                     className="default-input width-90 mx-30 px-20 py-20 my-10"
+                    onClick={ download }
                 >
                     File1
                 </Card>
+                <Button
+                    className="default-button bg-red mx-20 my-10 self-end"
+                    onClick={ deleteDeadline }
+                >
+                        Hapus
+                </Button>
             </Card>
             </>
         }

@@ -10,19 +10,12 @@ const Note = (props) => {
     const history = useHistory();
     const [notes, setNotes] = useState([]);
     
-    // const fetchNote = async () => {
-        // return await UserService.getNotes().then((response) => {
-        //     setNotes(response);
-        // });
-    // }
 
     useEffect(() => {
-        // fetchNote();
         UserService.getNotes().then((response) => {
             setNotes(response);
         });
     },[])
-    
     
     const openNote = (note_id) => {
         history.push('/note/'+ note_id);
@@ -34,8 +27,8 @@ const Note = (props) => {
     }
 
     return(
-        <div>
-            <UserLayout>
+        <UserLayout>
+            <div className="px-30">
                 <div className="flex-row justify-between flex-center px-10 py-10">
                     <div className="title">Catatan</div>
                     <Button onClick={() => createNote } >
@@ -46,6 +39,7 @@ const Note = (props) => {
                 {
                     notes.map((note) => (
                         <Card
+                            key={   note.note_id }
                             className="violet-card white flex-row justify-between flex-center my-15 px-20 py-15"
                             onClick={() => openNote(note.note_id) }
                         >
@@ -55,8 +49,8 @@ const Note = (props) => {
                     ))
                 }
                 </Card>
-            </UserLayout>
-        </div>
+            </div>
+        </UserLayout>
     );
 }
 

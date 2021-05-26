@@ -7,6 +7,7 @@ import TextArea from '../../components/textArea';
 import UserService from '../../services/User.service';
 
 const NoteView = () => {
+    const history = useHistory();
     const [note, setNote] = useState({});
     const note_id = useParams().note_id;
     const [noteName, setNoteName] = useState('');
@@ -47,34 +48,43 @@ const NoteView = () => {
         });
         UserService.updateNote(note);
     }
+    
+    const deleteNote = () => {
+        UserService.deleteNote(note.note_id);
+    }
 
     return(
         <>
         {
         editStatus ?
-        <UserLayout>
-            <div className="flex-col">
+        <UserLayout className="flex-col">
+            <div className="flex-row justify-between flex-center">
                 <Input
                     className="default-input mx-30 my-20 width-90 px-20 py-10 title-little"
                     value={ noteName }
                     onChange={ updateNoteName }
                 />
-                <TextArea
-                    className="default-input width-90 mx-30 my-10 px-20 py-20"
-                    value={ noteDesc }
-                    onChange={ updateNoteDesc }
-                    rows="18"
-                    />
+                <Button onClick={ () => history.goBack() }>
+                    Kembali
+                </Button>
+            </div>
+            <TextArea
+                className="default-input width-90 mx-30 my-10 px-20 py-20"
+                value={ noteDesc }
+                onChange={ updateNoteDesc }
+                rows="18"
+            />
+            <div className="text-right">
                 <Button
                     className="default-button mx-30 my-10 self-end"
                     onClick={ saveNote }
                 >
-                    Save
+                    Simpan
                 </Button>
             </div>
         </UserLayout>
         :
-        <UserLayout>
+        <UserLayout className="flex-col">
             <div className="flex-row justify-between flex-center px-40 py-20">
                 <div className="title">
                     { note.note_name }
@@ -100,6 +110,14 @@ const NoteView = () => {
                 readOnly={ true }
                 rows="20"
             />
+            <div className="text-right">
+                <Button
+                    className="default-button bg-red mx-30 my-10 self-end"
+                    onClick={ deleteNote }
+                >
+                    Hapus
+                </Button>
+            </div>
         </UserLayout>
         }
         </>

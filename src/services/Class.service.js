@@ -8,35 +8,73 @@ class ClassService{
     const res = await axios.get(API_URL + 'class?class_id=' + class_id);
     return res.data[0];
   }
-  
-  logout(){
-    localStorage.removeItem("user");
+
+  async createClass(){
+    const res = await axios.post(API_URL + 'class');
+    return res.data;
   }
   
-  saveCurrentClass(data){
-    localStorage.setItem("class", JSON.stringify(data));
+  updateClass(clas, class_name){
+    clas.class_name = class_name;
+    axios.put(API_URL + 'class' + clas.class_id, clas);
   }
   
-  getCurrentUser(){
+  getCurrentClass(){
     return JSON.parse(localStorage.getItem("class"));
+  }
+  
+  async getClassMember(class_id){
+    // const res = await axios.get(API_URL + 'class/' + class_id + '/member');
+    const res = await axios.get(API_URL + 'classMember');
+    return res.data;
+  }
+
+  deleteMember(class_id, student_id){
+    // axios.delete(API_URL + 'class/' + class_id + '/member/' + student_id);
+    axios.delete(API_URL + 'classMember/' + student_id);
+  }
+  
+  async getClassMemberReq(class_id){
+    // const res = await axios.get(API_URL + 'class/member_req/' + class_id);
+    const res = await axios.get(API_URL + 'classMemberReq');
+    return res.data;
+  }
+  
+  approveMember(class_id, student_id){
+    axios.put(API_URL + 'class/member_req/'+ class_id, {
+      student_id : student_id,
+      action: "approve"
+    });
+  }
+  
+  declineMember(class_id, student_id){
+    axios.put(API_URL + 'class/member_req/'+ class_id, {
+      student_id : student_id,
+      action: "decline"
+    });
   }
   
   addSchedule(clas, schedule){
     clas.class_schedule = schedule;
-    axios.patch(API_URL + 'class?class_id=D' , {
-      ...clas,
-      id: 1
-    });
+    axios.put(API_URL + 'class?class_id=' + clas.class_id , clas);
   }
   
-  getDeadlines(){
-    return axios.get(API_URL + 'deadline')
-      .then((res) => res.data);
+  async getDeadlines(){
+    const res = await axios.get(API_URL + 'deadline');
+    return res.data;
   }
   
   async getDeadline(cl_assignment_id){
     const res = await axios.get(API_URL + 'deadline?cl_assignment_id=' + cl_assignment_id);
     return res.data[0];
+  }
+
+  updateDeadline(deadline){
+    
+  }
+
+  deleteDeadline(deadline){
+
   }
 }
 
