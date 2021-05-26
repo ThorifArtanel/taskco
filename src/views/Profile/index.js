@@ -16,8 +16,8 @@ const Profile = (props) => {
     userTemp = user.userData;
     
     useEffect(() => {
-        // setUser(UserService.getCurrentUser());
-    },[user])
+        setUser(UserService.getCurrentUser());
+    },[])
 
     const changePhoto = () => {
 

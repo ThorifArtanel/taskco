@@ -33,6 +33,10 @@ body{
     font-size: 2em;
 }
 
+.title-little{
+    font-size: 1.5em;
+}
+
 .menu-item{
     padding: 20px 20px;
     margin : 4px 0;
@@ -86,6 +90,7 @@ body{
     border: solid 1px $grey;
     border-radius: 8px;
     font-weight: 400;
+    resize: none;
 }
 
 .default-card{
@@ -95,10 +100,14 @@ body{
 }
 
 .violet-card{
-    background-color: $secondaryColor;
+    background-color: $mainColor;
     padding: 8px 16px;
     border: solid 1px $grey;
     border-radius: 8px;
+}
+
+.violet-card:hover{
+    background-color: $secondaryColor;
 }
 
 .warning{   

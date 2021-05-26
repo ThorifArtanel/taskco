@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const API_URL = '/api/auth/';
+const API_URL = 'http://127.0.0.1:4000/';
 
 class AuthService{
   isLoggedIn(ComposedComponent = false){
@@ -69,6 +69,10 @@ class AuthService{
 
   updateUser(user){
 
+  }
+
+  banUser(nim){
+    
   }
 
   deleteUser(nim){

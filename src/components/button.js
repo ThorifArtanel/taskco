@@ -9,6 +9,8 @@ const Button = (props) => {
             type = { props.type }
             style = { props.style }
             onClick = { props.onClick }
+            onMouseEnter = { props.onMouseEnter }
+            onMouseLeave = { props.onMouseLeave }
         >
             { props.children }
         </button>

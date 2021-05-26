@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import DefaultLayout from '../../components/Layout/defaultLayout';
+import TopBar from '../../components/Topbar';
 import AuthService from '../../services/Auth.service';
 import ClassService from '../../services/Class.service';
 import { ClassContext } from '../../services/ClassContext';
@@ -83,37 +84,36 @@ const Login = (props) => {
     }
 
     return(
-        <div>
-            <DefaultLayout>
-                    <div  className="margin-auto my-40 width-40">
-                        <div className="flex-col">
-                            <div className="title-big text-center my-40 red-rose">
-                                Login
-                            </div>
-                            <Input 
-                                type="text"
-                                className="default-input text-center my-10"
-                                onChange={ updateUsername } 
-                                value={ username }
-                                placeholder="NIM"
-                                />
-                            <Input 
-                                type="password"
-                                className="default-input text-center my-10"
-                                onChange={ updatePassword } 
-                                value={ password }
-                                placeholder="Password"
-                                />
-                            <Button onClick={() => login()}  className="default-button my-10 width-30 self-center">
-                                Login
-                            </Button>
-                            <div className="my-10 self-center">
-                                Belum punya akun? <a href="/register">Daftar</a>
-                            </div>
-                        </div>
+        <>
+            <TopBar/>
+            <div  className="margin-auto my-40 width-40">
+                <div className="flex-col">
+                    <div className="title-big text-center my-40 red-rose">
+                        Login
                     </div>
-            </DefaultLayout>
-        </div>
+                    <Input 
+                        type="text"
+                        className="default-input text-center my-10"
+                        onChange={ updateUsername } 
+                        value={ username }
+                        placeholder="NIM"
+                        />
+                    <Input 
+                        type="password"
+                        className="default-input text-center my-10"
+                        onChange={ updatePassword } 
+                        value={ password }
+                        placeholder="Password"
+                        />
+                    <Button onClick={() => login()}  className="default-button my-10 width-30 self-center">
+                        Login
+                    </Button>
+                    <div className="my-10 self-center">
+                        Belum punya akun? <a href="/register">Daftar</a>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
 

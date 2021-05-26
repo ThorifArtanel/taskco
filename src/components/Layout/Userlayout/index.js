@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ClassContext } from '../../../services/ClassContext';
-import UserService from '../../../services/User.service';
 import { UserContext } from '../../../services/UserContext';
 import Sidebar from '../../Sidebar';
 import DefaultLayout from '../defaultLayout';
@@ -12,6 +10,7 @@ const UserLayout = (props) => {
     useEffect(() => {
         setWidth(window.innerWidth);
     }, [])
+
 
     const menus = [
         {
@@ -36,7 +35,9 @@ const UserLayout = (props) => {
     }
     
     return(
-        <DefaultLayout>
+        <DefaultLayout
+            
+        >
             <Sidebar menus={ menus }/>
             <div
                 className="px-20 py-20"

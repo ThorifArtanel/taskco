@@ -1,33 +1,42 @@
 import axios from 'axios';
 
-const API_URL = '/api/auth/';
+const API_URL = 'http://127.0.0.1:4000/';
 
 
 class ClassService{
-  getClass(class_id){
-    JSON.parse(localStorage.getItem("login"));
-    return {
-      faculty_id: "D",
-      study_program_id: "D561",
-      course_id: "7Y810UU",
-      class_id: "C2POW19",
-      lecturer_id: "18372",
-      student_id: "1900011",
-      class_name: "IlkomC2 2019",
-      class_year: "09-01-2019",
-    }
+  async getClass(class_id){
+    const res = await axios.get(API_URL + 'class?class_id=' + class_id);
+    return res.data[0];
   }
-
+  
   logout(){
     localStorage.removeItem("user");
   }
-
+  
   saveCurrentClass(data){
     localStorage.setItem("class", JSON.stringify(data));
   }
   
   getCurrentUser(){
-    return JSON.parse(localStorage.getItem("user"));
+    return JSON.parse(localStorage.getItem("class"));
+  }
+  
+  addSchedule(clas, schedule){
+    clas.class_schedule = schedule;
+    axios.patch(API_URL + 'class?class_id=D' , {
+      ...clas,
+      id: 1
+    });
+  }
+  
+  getDeadlines(){
+    return axios.get(API_URL + 'deadline')
+      .then((res) => res.data);
+  }
+  
+  async getDeadline(cl_assignment_id){
+    const res = await axios.get(API_URL + 'deadline?cl_assignment_id=' + cl_assignment_id);
+    return res.data[0];
   }
 }
 

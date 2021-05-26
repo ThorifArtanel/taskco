@@ -1,6 +1,7 @@
 $width: 20, 30, 40, 50, 60, 70, 80, 90, 100;
-$padding: 5, 10, 15, 20, 30, 40, 50;
+$padding: 0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80;
 $font: 16, 18, 20, 24, 32, 38, 40;
+$em: 2, 3;
 
 .flex-row{
     display: flex;
@@ -15,6 +16,11 @@ $font: 16, 18, 20, 24, 32, 38, 40;
 .justify-end{
     justify-content: flex-end;
 }
+
+.justify-center{
+    justify-content: center;
+}
+
 .justify-between{
     justify-content: space-between;
 }
@@ -23,6 +29,10 @@ $font: 16, 18, 20, 24, 32, 38, 40;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
 }
 
 .self-center{
@@ -42,6 +52,10 @@ $font: 16, 18, 20, 24, 32, 38, 40;
 
 .white{
     color: $white;
+}
+
+.green{
+    color: $green;
 }
 
 .red-rose{
@@ -101,6 +115,15 @@ $font: 16, 18, 20, 24, 32, 38, 40;
     }
 }
 
+@each $item in $em{
+    .font-#{$item}em {
+        font-size: $item + em;
+    }
+}
+
+.size-inherit{
+    font-size: inherit;
+}
 .text-center{
     text-align: center;
 }
@@ -117,3 +140,10 @@ $font: 16, 18, 20, 24, 32, 38, 40;
     background-color: $green !important;
 }
 
+.bg-grey{
+    background-color: $grey !important;
+}
+
+.bg-red:hover, .bg-green:hover{
+    background-color: $secondaryColor !important;
+}

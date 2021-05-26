@@ -39,7 +39,6 @@
       "student_id": "1900011",
       "class_name": "IlkomC2 2019",
       "class_year": "01-09-2019",
-      "class_schedule": "",
       "member_number": 43
     }
   ],
@@ -57,22 +56,6 @@
       "note_desc": "Lorem ipsum dah ah males",
       "note_timestamp": "01-05-2021",
       "publicity": false
-    }
-  ],
-  "deadline": [
-    {
-        "cl_assignment_id": "T1",
-        "cl_assignment_name": "Tugas 1",
-        "cl_assignment_desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere ligula quis sollicitudin tristique. Sed odio quam, porta et lacus sed, hendrerit tincidunt dui. Morbi dignissim libero a facilisis fringilla. Fusce a velit risus. Etiam nisl ipsum, varius et ante quis, porta commodo metus. Integer laoreet eleifend nulla, at malesuada ipsum luctus eget. Nulla tincidunt nulla magna, et rutrum lorem mollis         ut. Morbi luctus finibus ullamcorper. Duis ut convallis leo. Ut condimentum viverra         felis sit amet viverra. Integer blandit placerat est, sed imperdiet risus posuere et.",
-        "cl_assignment_start": "29-04-2021",
-        "cl_assignment_end": "26-05-2021"
-    },
-    {
-        "cl_assignment_id": "T2",
-        "cl_assignment_name": "Tugas 2",
-        "cl_assignment_desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere ligula ",
-        "cl_assignment_start": "29-04-2021",
-        "cl_assignment_end": "27-05-2021"
     }
   ]
 }

@@ -6,15 +6,24 @@ import UserLayout from '../../components/Layout/Userlayout';
 import UserService from '../../services/User.service';
 import { UserContext } from '../../services/UserContext';
 
-const Note = async (props) => {
+const Note = (props) => {
     const history = useHistory();
     const [notes, setNotes] = useState([]);
     
-    useEffect(() => {
-        setNotes(UserService.getNotes());
-        console.log(UserService.getNotes());
-    },[])
+    // const fetchNote = async () => {
+        // return await UserService.getNotes().then((response) => {
+        //     setNotes(response);
+        // });
+    // }
 
+    useEffect(() => {
+        // fetchNote();
+        UserService.getNotes().then((response) => {
+            setNotes(response);
+        });
+    },[])
+    
+    
     const openNote = (note_id) => {
         history.push('/note/'+ note_id);
     }
@@ -28,7 +37,7 @@ const Note = async (props) => {
         <div>
             <UserLayout>
                 <div className="flex-row justify-between flex-center px-10 py-10">
-                    <div className="title"> Catatan </div>
+                    <div className="title">Catatan</div>
                     <Button onClick={() => createNote } >
                         Tambah Baru
                     </Button>

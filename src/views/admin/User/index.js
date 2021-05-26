@@ -30,8 +30,8 @@ const AdminUser = (props) => {
         ])
     },[])
 
-    const editUser = (nim) => {
-        history.push('user/' + nim);
+    const banUser = (nim) => {
+        AdminService.banUser(nim);
     }
 
     const deleteUser = (nim) => {
@@ -53,8 +53,8 @@ const AdminUser = (props) => {
                                 </div>
                             </div>
                             <div className="flex-row flex-center">
-                                <Button className="default-button bg-green mx-5" onClick={() => editUser(user.nim) }>
-                                    Edit
+                                <Button className="default-button mx-5" onClick={() => banUser(user.nim) }>
+                                    Ban
                                 </Button>
                                 <Button className="default-button bg-red mx-5" onClick={() => deleteUser(user.nim) }>
                                     Hapus

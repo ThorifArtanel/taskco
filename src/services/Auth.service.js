@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import bcrypt from 'bcrypt';
+// import { hashSync, verifySync } from '@node-rs/bcrypt';
 
 const API_URL = 'http://127.0.0.1:4000/';
 const kagi = "AyshaHasnaIzzaThorif";
@@ -7,29 +7,19 @@ const kagi = "AyshaHasnaIzzaThorif";
 
 class AuthService{
   async login(username, password){
-    // const hash = await bcrypt.hash(password+kagi, saltRounds);
+    
     const response = await axios.get(API_URL + 'user?username=' + username);
-    // await axios({
-    //   url: API_URL + 'user?username=' + username,
-    //   method: "get",
-    //   headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json',
-    //       'Access-Control-Allow-Origin': '*'
-    //   }
-    // })
-    if(response.data[0].password === password){
-      
-      return true;
-    }
-
-    // if (response.data.accessToken) {
-    //     localStorage.setItem('user', JSON.stringify(response.data));
-    // }
-      // localStorage.setItem('login', true);
+    console.log(response.data.accessToken);
+    // return verifySync(password, response.data[0].password);
   }
 
   async register(username, password){
+    // const pass =  hashSync(password + kagi, 12);
+    axios.post(API_URL + 'user', {
+      username: username,
+      password: password,
+      student_id: username
+    });
   }
   
   logout(){

@@ -13,14 +13,17 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 const Class = (props) => {
     const history = useHistory();
     const [user] = useContext(UserContext);
-    const [clas] = useContext(ClassContext);
+    const [clas, setClass] = useContext(ClassContext);
     const [inputClass, setInputClass] = useState('');
+    const userTemp = user.userData;
 
 
     
     useEffect(() => {
-        // setUser(UserService.getCurrentUser());
-    },[user])
+        ClassService.getClass(userTemp.class_id)
+            .then((res) => setClass(res));
+        ClassService.saveCurrentClass(clas);
+    },[])
 
     const joinClass = () => {
         ClassService.joinClass(inputClass);
@@ -42,7 +45,7 @@ const Class = (props) => {
         <div>
             <UserLayout>
                 <div className="title px-10 py-10">Kelas Anda</div>
-                    {user.class_id !== "" ?
+                    { userTemp.class_id === "" ?
                     (<div className="px-30 py-50 flex-row justify-between flex-start">
                         <div className="margin-auto flex-col">
                             <div className="flex-row flex-center">
@@ -64,13 +67,17 @@ const Class = (props) => {
                     :
                     (<Card
                         className="px-30 py-30 violet-card flex-col justify-between flex-start"
-                        onClick={() => enterClass}
+                        onClick={ enterClass }
                     >
-                        <div className="title white">Ilkom C2 2019{ clas.class_name }</div>
+                        <div className="title white">{ clas.class_name }</div>
                         <div className="white light my-20">Kode Kelas: { clas.class_id }</div>
                         <div className="my-40">
                         </div>
-                        <div className="white light flex-row flex-center justify-start"><FontAwesomeIcon className="mx-10" icon={ faUserCircle } size="lg" /> { clas.member } Member</div>
+                        <div
+                            className="white light flex-row flex-center justify-start"
+                        >
+                            <FontAwesomeIcon className="mx-10" icon={ faUserCircle } size="lg" /> { clas.member_number } Member
+                        </div>
                     </Card>)}
             </UserLayout>
         </div>
