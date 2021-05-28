@@ -15,6 +15,7 @@ const TextArea = (props) => {
       onInput = { props.onInput }
       placeholder = { props.placeholder }
       readOnly= { props.readOnly }
+      defaultValue = { props.defaultValue }
     >
     </textarea>
   )

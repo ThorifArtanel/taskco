@@ -1,27 +1,54 @@
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
-const API_URL = '/api/auth/';
+const API_URL = 'http://127.0.0.1:4000/';
+const saltRounds = 12;
 
 class AuthService{
   async login(username, password){
-    // const response = await axios
-    //       .post(API_URL + 'login', {
-    //           username,
-    //           password
-    //       });
-    //   if (response.data.accessToken) {
-    //       localStorage.setItem('user', JSON.stringify(response.data));
-    //   }
-      localStorage.setItem('login', true);
-      return true;
-    //   return response.data;
+    let pass = await bcrypt.hashSync(password + process.env.REACT_APP_KAGI, saltRounds);
+    return  axios.post(process.env.REACT_APP_API_URL + 'login', {
+        data: {
+          nim: username,
+          password: pass
+        }
+      }).then(res => {
+        return res.data.approved;
+      });
   }
 
   async register(username, password){
+    var pass = await bcrypt.hashSync(password + process.env.REACT_APP_KAGI, saltRounds);
+    return axios.post(process.env.REACT_APP_API_URL + 'register', {
+      data: {
+            nim: username,
+            password: pass
+          }
+    })
+    .then(res => {
+      return res.data.code === 200 ? true : false; 
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+      // axios({
+      //   url: process.env.REACT_APP_API_URL + 'register',
+      //   method: "post",
+      //   headers: {
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json',
+      //       'Access-Control-Allow-Origin': '*'
+      //   },
+      //   data: {
+      //     nim: username,
+      //     password: pass
+      //   }
+      // })
   }
   
   logout(){
     localStorage.removeItem("user");
+    window.location.href = "/";
   }
 }
 

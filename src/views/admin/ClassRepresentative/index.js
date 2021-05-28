@@ -57,9 +57,9 @@ const AdminClassRepresentative = (props) => {
                     usersRequest.map((user) => (
                         <Card className="default-card flex-row justify-between flex-center my-15">
                             <div className="flex-row flex-center">
-                                { user.image || <img src={Person} alt="Person" height="40px" /> }
+                                { user.user_picture_path || <img src={Person} alt="Person" height="40px" /> }
                                 <div className="mx-10">
-                                    { user.name }
+                                    { user.student_name }
                                 </div>
                             </div>
                             
@@ -67,10 +67,10 @@ const AdminClassRepresentative = (props) => {
                                 <div className="mx-10">
                                     Request
                                 </div>
-                                <Button className="icon-button mx-10" onClick={() => approveClassRepresentative(user.nim) }>
+                                <Button className="icon-button mx-10" onClick={() => approveClassRepresentative(user.student_id) }>
                                     <FontAwesomeIcon icon={ faCheck } />
                                 </Button>
-                                <Button className="icon-button mc-10" onClick={() => declineClassRepresentative(user.nim) }>
+                                <Button className="icon-button mc-10" onClick={() => declineClassRepresentative(user.student_id) }>
                                     <FontAwesomeIcon icon={ faTimes } />
                                 </Button>
                             </div>
@@ -81,12 +81,12 @@ const AdminClassRepresentative = (props) => {
                     users.map((user) => (
                         <Card className="default-card flex-row justify-between flex-center my-15">
                             <div className="flex-row flex-center">
-                                { user.image || <img src={Person} alt="Person" height="40px" /> }
+                                { user.user_picture_path || <img src={Person} alt="Person" height="40px" /> }
                                 <div className="mx-10">
                                     { user.name }
                                 </div>
                             </div>
-                            <Button className="default-button bg-red" onClick={() => deleteClassRepresentative(user.nim) }>
+                            <Button className="default-button bg-red" onClick={() => deleteClassRepresentative(user.student_id) }>
                                 Hapus
                             </Button>
                         </Card>

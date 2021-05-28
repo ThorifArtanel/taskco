@@ -13,7 +13,8 @@ const Input = (props) => {
       onChange = { props.onChange }
       onInput = { props.onInput }
       placeholder = { props.placeholder }
-      readOnly= { props.readOnly }
+      readOnly = { props.readOnly }
+      defaultValue = { props.defaultValue }
     >
       { props.title }
     </input>

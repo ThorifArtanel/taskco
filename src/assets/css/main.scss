@@ -4,6 +4,10 @@
 @import "color";
 @import "utils";
 
+:root{
+    --black: #2c2c2c;
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -18,7 +22,8 @@ body{
 
 .sidebar{
     width: 18%;
-    position: absolute;
+    position: fixed;
+    height: auto;
     top: 45px;
     bottom: 0;
     background-color: $tertiaryColor;
@@ -30,6 +35,10 @@ body{
 
 .title{
     font-size: 2em;
+}
+
+.title-little{
+    font-size: 1.5em;
 }
 
 .menu-item{
@@ -70,7 +79,7 @@ body{
 .default-button{
     background-color: $grey;
     color: $white;
-    padding: 8px 16px;
+    padding: 8px 24px;
     border-radius: 8px;
     border: none;
 }
@@ -84,12 +93,25 @@ body{
     padding: 8px 16px;
     border: solid 1px $grey;
     border-radius: 8px;
+    font-weight: 400;
+    resize: none;
 }
 
 .default-card{
     padding: 8px 16px;
     border: solid 1px $grey;
     border-radius: 8px;
+}
+
+.violet-card{
+    background-color: $mainColor;
+    padding: 8px 16px;
+    border: solid 1px $grey;
+    border-radius: 8px;
+}
+
+.violet-card:hover{
+    background-color: $secondaryColor;
 }
 
 .warning{   
@@ -111,6 +133,12 @@ body{
 a{
     text-decoration: none;
     color:inherit;
+}
+
+.call-admin{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 }
 
 .text-link:hover{

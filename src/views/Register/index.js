@@ -3,7 +3,9 @@ import { useHistory } from 'react-router';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import DefaultLayout from '../../components/Layout/defaultLayout';
+import TopBar from '../../components/Topbar';
 import AuthService from '../../services/Auth.service';
+import UserService from '../../services/User.service';
 
 const Register = (props) => {
     const history = useHistory();
@@ -12,16 +14,15 @@ const Register = (props) => {
     const [rePassword, setRePassword] = useState('');
     
     
-    const register = (e) => {
+    const register = () => {
         if(!check()) return false;
         // e.preventDefault();
-        if(AuthService.register(username, password)){
-            alert("Register Successful");
+        UserService.getNote('');
+        AuthService.register(username, password).then( res => {
+            console.log(res);
+            res ? alert("Register Successful") : alert("Register Failed");
             history.replace('/login');
-        }
-        else{
-            alert("Register Failed");
-        }
+        });
     }
 
     const check = () => {
@@ -50,61 +51,63 @@ const Register = (props) => {
 
     return(
         <div>
-            <DefaultLayout>
-                    <form onSubmit={() => { register() }} className="margin-auto my-40 width-40">
-                        <div className="flex-col flex-center">
-                            <div className="title-big text-center my-40 red-rose">
-                                Register
-                            </div>
-                            <table className="width-100">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        NIM
-                                    </td>
-                                    <td>
-                                        <Input 
-                                            type="text"
-                                            className="default-input my-10 width-80"
-                                            onChange={ updateUsername } 
-                                            value={ username }
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Password
-                                    </td>
-                                    <td>
-                                        <Input 
-                                            type="password"
-                                            className="default-input my-10 width-80"
-                                            onInput={ updatePassword } 
-                                            value={ password }
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Re-Enter Password
-                                    </td>
-                                    <td>
-                                        <Input 
-                                            type="password"
-                                            className="default-input my-10 width-80"
-                                            onInput={ updateRePassword } 
-                                            value={ rePassword }
-                                        />
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <Button className="default-button my-10 width-30">
-                                Register
-                            </Button>
-                        </div>
-                    </form>
-            </DefaultLayout>
+            <TopBar/>
+            <div className="margin-auto my-40 width-40">
+                <div className="flex-col flex-center">
+                    <div className="title-big text-center my-40 red-rose">
+                        Register
+                    </div>
+                    <table className="width-100">
+                        <tbody>
+                        <tr>
+                            <td>
+                                NIM
+                            </td>
+                            <td>
+                                <Input 
+                                    type="text"
+                                    className="default-input my-10 width-80"
+                                    onChange={ updateUsername } 
+                                    value={ username }
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Password
+                            </td>
+                            <td>
+                                <Input 
+                                    type="password"
+                                    className="default-input my-10 width-80"
+                                    onInput={ updatePassword } 
+                                    value={ password }
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Re-Enter Password
+                            </td>
+                            <td>
+                                <Input 
+                                    type="password"
+                                    className="default-input my-10 width-80"
+                                    onInput={ updateRePassword } 
+                                    value={ rePassword }
+                                />
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <Button
+                        onClick={ register }
+                        className="default-button my-10 width-30"
+                    >
+                        Register
+                    </Button>
+                </div>
+            </div>
         </div>
     )
 }
