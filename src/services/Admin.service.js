@@ -53,30 +53,31 @@ class AuthService{
     
   }
 
-  getUser(nim){
-    return {
-      student_id: "1900011",
-      faculty_id: "D",
-      study_program_id: "D7612",
-      student_name: "Mahasiswa A",
-      student_place_of_birth: "Bandung",
-      student_date_of_birth: "10-28-2000",
-      student_gender: "Laki-Laki",
-      student_entry_year: 2019,
-      student_bio: "hjsadgjahsjhgdasmbzcxhjgdsagsadhjgjhgjhgjasdghjgdjhgsadsahdgshdagddd"
-    }
+  async getUsers(nim){
+    const res = await axios.get(API_URL, 'students');
+    return res;
+    // return {
+    //   student_id: "1900011",
+    //   faculty_id: "D",
+    //   study_program_id: "D7612",
+    //   student_name: "Mahasiswa A",
+    //   student_place_of_birth: "Bandung",
+    //   student_date_of_birth: "10-28-2000",
+    //   student_gender: "Laki-Laki",
+    //   student_entry_year: 2019,
+    //   student_bio: "hjsadgjahsjhgdasmbzcxhjgdsagsadhjgjhgjhgjasdghjgdjhgsadsahdgshdagddd"
+    // }
   }
 
-  updateUser(user){
 
+  async banUser(nim){
+    const res = await axios.patch(API_URL, 'students/' + nim);
+    return res;
   }
 
-  banUser(nim){
-    
-  }
-
-  deleteUser(nim){
-
+  async deleteUser(nim){
+    const res = await axios.delete(API_URL, 'students/' + nim);
+    return res;
   }
 
   getCurrentUser(){

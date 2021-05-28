@@ -10,44 +10,43 @@ import ClassService from '../../services/Class.service';
 import { UserContext } from '../../services/UserContext';
 import Card from '../../components/card';
 
-const DeadlineView = () => {
+const MaterialView = () => {
     const history = useHistory();
     const [user] = useContext(UserContext);
     const [clas] = useContext(ClassContext);
-    const [deadline, setDeadline] = useState({});
-    const [deadlineName, setDeadlineName] = useState('');
-    const [deadlineDesc, setDeadlineDesc] = useState('');
-    const [deadlineEnd, setDeadlineEnd] = useState('');
+    const [material, setMaterial] = useState({});
+    const [materialName, setMaterialName] = useState('');
+    const [materialDesc, setMaterialDesc] = useState('');
+    const [materialPath, setMaterialPath] = useState('');
     const [editStatus, setEditStatus] = useState(false);
-    const deadline_id = useParams().deadline_id;
+    const { task_material_id } = useParams();
     
 
     useEffect(() => {
-        ClassService.getDeadline(deadline_id).then((res) => {
-            setDeadline(res);
+        ClassService.getMaterial(clas.class_id, task_material_id).then((res) => {
+            setMaterial(res);
         });
-    },[deadline_id]);
+    },[clas, task_material_id]);
     
-    const editDeadline = () => {
-        setDeadlineName(deadline.cl_assignment_name);
-        setDeadlineDesc(deadline.cl_assignment_desc);
-        setDeadlineEnd( UserService.getTimestamp(deadline.cl_assignment_end));
+    const editMaterial = () => {
+        setMaterialName(material.task_material_name);
+        setMaterialDesc(material.task_material_desc);
+        setMaterialPath(material.task_material_path);
         setEditStatus(true);
     }
 
-    const updateDeadlineDesc = (e) => {
-        setDeadlineDesc(e.target.value);
+    const updateMaterialDesc = (e) => {
+        setMaterialDesc(e.target.value);
     }
 
-    const updateDeadlineName = (e) => {
-        setDeadlineName(e.target.value);
+    const updateMaterialName = (e) => {
+        setMaterialName(e.target.value);
     }
 
-    const updateDeadlineEnd = (e) => {
-        setDeadlineEnd(e.target.value);
+    const updateMaterialPath = (e) => {
+        // console.log(e.target.value);
+        setMaterialPath(e.target.value);
     }
-
-
 
     const upload = () => {
 
@@ -57,19 +56,18 @@ const DeadlineView = () => {
 
     }
 
-    const saveDeadline = () => {
-        setDeadline({
-            cl_assignment_id: deadline.cl_assignment_id,
-            cl_assignment_name: deadlineName,
-            cl_assignment_desc: deadlineDesc,
-            cl_assignment_start: UserService.getTimestamp(),
-            cl_assignment_end: UserService.getTimestamp(deadlineEnd)
+    const saveMaterial = () => {
+        setMaterial({
+            material_id: material.material_id,
+            material_name: materialName,
+            material_desc: materialDesc,
+            material_path: materialPath
         });
-        UserService.updateDeadline(deadline);
+        UserService.updateMaterial(material);
     }
 
-    const deleteDeadline = () => {
-        ClassService.deleteDeadline(deadline_id);
+    const deleteMaterial = (material_id) => {
+        ClassService.deleteMaterial(material_id);
     }
 
     return(
@@ -81,8 +79,8 @@ const DeadlineView = () => {
                 <div className="flex-row justify-between flex-center">
                     <Input
                         className="default-input my-20 width-100 px-20 py-10 title-little"
-                        value={ deadlineName }
-                        onChange={ updateDeadlineName }
+                        value={ materialName }
+                        onChange={ updateMaterialName }
                     />
                     <div className="flex-row flex-center mx-10">
                         <Button onClick={ () => history.goBack() }>
@@ -90,16 +88,10 @@ const DeadlineView = () => {
                         </Button>
                     </div>
                 </div>
-                <Input
-                    className="default-input my-10 px-20 py-20"
-                    type="date"
-                    value={ deadlineEnd }
-                    onChange={ updateDeadlineEnd }
-                />
                 <TextArea
                     className="default-input my-10 px-20 py-20"
-                    value={ deadlineDesc }
-                    onChange={ updateDeadlineDesc }
+                    value={ materialDesc }
+                    onChange={ updateMaterialDesc }
                     rows="18"
                 />
                 <Card
@@ -111,7 +103,7 @@ const DeadlineView = () => {
                 </Card>
                 <Button
                     className="default-button my-10 self-end"
-                    onClick={ saveDeadline }
+                    onClick={ saveMaterial }
                 >
                     Simpan
                 </Button>
@@ -121,12 +113,12 @@ const DeadlineView = () => {
             <>
             <div className="flex-row justify-between flex-center px-40 py-20">
                 <div className="title">
-                    { deadline.cl_assignment_name }
+                    { material.material_name }
                 </div>
                 <div className="flex-row flex-center">
                     <Button
                         className="default-button mx-5"
-                        onClick={ editDeadline }
+                        onClick={ editMaterial }
                     >
                         Ubah
                     </Button>
@@ -140,13 +132,10 @@ const DeadlineView = () => {
                     <div className="title-little light my-10">
                         Deskripsi
                     </div>
-                    <Card className="default-card bg-grey white light width-fit">
-                        { deadline.cl_assignment_end }
-                    </Card>
                 </div>
                 <TextArea
                     className="default-input width-90 mx-30 px-20 py-20 my-10"
-                    value={ deadline.cl_assignment_desc }
+                    value={ material.material_desc }
                     readOnly={ true }
                     rows="20"
                 />
@@ -158,7 +147,7 @@ const DeadlineView = () => {
                 </Card>
                 <Button
                     className="default-button bg-red mx-20 my-10 self-end"
-                    onClick={ deleteDeadline }
+                    onClick={ () => deleteMaterial(material.material_id) }
                 >
                         Hapus
                 </Button>
@@ -169,4 +158,4 @@ const DeadlineView = () => {
     );
 }
 
-export default DeadlineView;
+export default MaterialView;

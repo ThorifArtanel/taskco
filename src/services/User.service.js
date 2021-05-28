@@ -28,18 +28,18 @@ class UserService{
   }
 
   getTimestamp(date){
+    return new Date(date).toISOString;
+    // let timeStamp = date ? new Date(date) : new Date();
+    // return timeStamp;
+  }
+
+  getTimeFormat(date){
     let time = date ? new Date(date) : new Date();
     return dateFormat(time, "dd-mm-yyyy");
   }
-
-  getTimeISO(date){
-    let f = date.split('-');
-    return f[2] + "-" + f[1] + "-" + f[0];
-  }
   
   async getUser(username){
-    const response = await axios.get(API_URL + 'student?student_id=' + username);
-
+    const response = await axios.get(process.env.REACT_APP_API_URL + 'student/' + username);
     return {
       isLoggedIn: true,
       userType: "user",
@@ -68,24 +68,32 @@ class UserService{
     const response = axios.post(API_URL + 'student?student_id=' + student_id);
   }
 
-  async getNotes(){
+  async getNotes(student_id){
     //これ大事ね。
-    return axios.get(API_URL + 'note')
+    return axios.get(API_URL + 'notes/' + student_id)
       .then((res) => res.data);
   }
 
   async getNote(note_id){
-    return axios.get(API_URL + 'note?note_id=' + note_id)
-      .then((res) => res.data[0]);
+    return axios.get(process.env.REACT_APP_API_URL + 'note/' + note_id)
+      .then((res) => res.data);
   }
   
   changeNoteVisibility(note_id){
-    axios.post(API_URL + 'note', note_id);
+    axios.patch(process.env.REACT_APP_API_URL + 'note/' + note_id, {
+      s_note_publicity: true
+    });
   }
   
   async createNote(){
-    const res = await axios.get(API_URL + 'note/create');
-    return res;
+    let time = this.getTimestamp();
+    await axios.post(API_URL + 'note',{
+      s_note_timestamp: time,
+      s_note_name: "",
+      s_note_content: "",
+      s_note_publicity: false
+    });
+    return time;
   }
     
   async updateNote(note){

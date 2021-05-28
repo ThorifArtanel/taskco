@@ -15,6 +15,7 @@ export const UserProvider = (props) => {
             student_date_of_birth: "",
             student_gender: "",
             student_entry_year: "",
+            student_phone_number: "",
             student_bio: "",
             user_picture: "",
             class_id: "",

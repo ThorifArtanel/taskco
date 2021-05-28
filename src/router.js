@@ -20,15 +20,33 @@ import Deadline from './views/Class/Deadline';
 import DeadlineView from './views/Class/DeadlineView';
 import Setting from './views/Setting';
 import SettingClass from './views/Setting/SettingClass';
+import ClassMember from './views/Class/ClassMember';
+import Lesson from './views/Class/Lesson';
+import LessonView from './views/Class/LessonView';
+import MaterialFromLecturer from './views/Class/MaterialFromLecturer';
+import MaterialView from './views/Class/MaterialView';
+import MaterialFromUser from './views/Class/MaterialFromUser';
+import Task from './views/Class/Task';
+import TaskList from './views/Class/TaskList';
 
 const RootRouter = () =>{
   return(
     <Switch>
       <Route path='/' exact component={ LandingPage } />
+
       {/* User Routers */}
       <Route path='/profile' exact component={ UserService.isLoggedIn(Profile) } />
       <Route path='/profile/change-password' exact component={ UserService.isLoggedIn(ChangePassword) } />
       <Route path='/class' exact component={ UserService.isLoggedIn(Class) } />
+      <Route path='/class/member' exact component={ UserService.isLoggedIn(ClassMember) } />
+      <Route path='/class/lesson' exact component={ UserService.isLoggedIn(Lesson) } />
+      <Route path='/class/lesson/:lesson_id' exact component={ UserService.isLoggedIn(LessonView) } />
+      <Route path='/class/lesson/:lesson_id/material-lecturer' exact component={ UserService.isLoggedIn(MaterialFromLecturer) } />
+      <Route path='/class/lesson/:lesson_id/material-student' exact component={ UserService.isLoggedIn(MaterialFromUser) } />
+      <Route path='/class/material/:material_id' exact component={ UserService.isLoggedIn(MaterialView) } />
+      <Route path='/class/lesson/:lesson_id/task' exact component={ UserService.isLoggedIn(Task) } />
+      <Route path='/class/lesson/:lesson_id/task/:task_id/list' exact component={ UserService.isLoggedIn(TaskList) } />
+      <Route path='/class/task/material/:task_id' exact component={ UserService.isLoggedIn(LessonView) } />
       <Route path='/class/deadline' exact component={ UserService.isLoggedIn(Deadline) } />
       <Route path='/class/deadline/:deadline_id' exact component={ UserService.isLoggedIn(DeadlineView) } />
       <Route path='/class/schedule' exact component={ UserService.isLoggedIn(Schedule) } />

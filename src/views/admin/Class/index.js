@@ -26,8 +26,8 @@ const AdminClass = (props) => {
                 {
                     classes.map((clas) => (
                         <Card className="default-card flex-row justify-between flex-center my-15">
-                            <div>{ clas.title }</div>
-                            <Button className="default-button bg-red" onClick={() => deleteClass(clas.code) }>
+                            <div>{ clas.class_name }</div>
+                            <Button className="default-button bg-red" onClick={() => deleteClass(clas.class_id) }>
                                 Hapus
                             </Button>
                         </Card>

@@ -1,6 +1,6 @@
 $width: 20, 30, 40, 50, 60, 70, 80, 90, 100;
-$padding: 0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80;
-$font: 16, 18, 20, 22, 24, 32, 38, 40;
+$padding: 0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80;
+$font: 16, 18, 20, 22, 24, 26, 28, 32, 38, 40;
 $em: 2, 3;
 
 .flex-row{
@@ -56,6 +56,10 @@ $em: 2, 3;
 
 .green{
     color: $green;
+}
+
+.light-black{
+    color: $black;
 }
 
 .red-rose{
@@ -142,6 +146,9 @@ $em: 2, 3;
 
 .bg-grey{
     background-color: $grey !important;
+}
+.bg-light-grey{
+    background-color: $tertiaryColor !important;
 }
 
 .bg-red:hover, .bg-green:hover{

@@ -23,7 +23,7 @@ const Class = (props) => {
         ClassService.getClass(userTemp.class_id)
             .then((res) => setClass(res));
         ClassService.saveCurrentClass(clas);
-    },[])
+    },[clas, setClass, userTemp])
 
     const joinClass = () => {
         ClassService.joinClass(inputClass);

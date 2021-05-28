@@ -40,9 +40,9 @@ const Login = (props) => {
         });
     }
     
-    const login = async (e) => {
+    const login = async () => {
         // e.preventDefault();
-        let auth = AuthService.login(username, password) && check();
+        let auth = await AuthService.login(username, password) && check();
         if(auth){
             // save();
             let user = await UserService.getUser(username);

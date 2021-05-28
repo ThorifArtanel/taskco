@@ -2,10 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import Button from '../../components/button';
 import TopBar from '../../components/Topbar';
+import UserService from '../../services/User.service';
 
 const LandingPage = (props) => {
     const history = useHistory();
 
+    console.log(new Date().toISOString());
     const goToLoginPage = () => {
         history.replace('/login');
     }

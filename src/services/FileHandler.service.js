@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'http://127.0.0.1:4000/';
 
-class ClassService{
+class FileHandler{
   async getClass(class_id){
     const res = await axios.get(API_URL + 'class?class_id=' + class_id);
     return res.data[0];
@@ -38,29 +38,9 @@ class ClassService{
     return res.data[0];
   }
   
-  async getMaterialsFromLecturer(class_id, lesson_id){
-    const res = await axios.get(API_URL + 'material?type=lecturer');
-    return res.data;
-  }
-
-  async getMaterialsFromUser(class_id, lesson_id){
-    const res = await axios.get(API_URL + 'material?type=user');
-    return res.data;
-  }
-
-  async getMaterial(class_id, material_id){
-    const res = await axios.get(API_URL + 'material?material_id=' + material_id);
-    return res.data[0];
-  }
-
-  createMaterial(){
-    const res = axios.push(API_URL + 'material');
-    return res.data;
-  }
-  
   async getClassMember(class_id){
     // const res = await axios.get(API_URL + 'class/' + class_id + '/member');
-    const res = await axios.get(API_URL + 'material?type=user');
+    const res = await axios.get(API_URL + 'classMember');
     return res.data;
   }
 
@@ -93,44 +73,6 @@ class ClassService{
     clas.class_schedule = schedule;
     axios.put(API_URL + 'class?class_id=' + clas.class_id , clas);
   }
-
-  async getTasks(){
-    const res = await axios.get(API_URL + 'task');
-    return res.data;
-  }
-
-  async getTask(task_id){
-    const res = await axios.get(API_URL + 'task?task_id=' + task_id);
-    return res.data[0];
-  }
-
-  async createTask(){
-
-  }
-
-  async getTaskList(lesson_id, task_id){
-    const res = await axios.get(API_URL + 'task_material?task_id=' + task_id);
-    return res.data;
-  }
-
-  async getTaskMaterial(task_material_id){
-    const res = await axios.get(API_URL + 'task_material?task_material_id=' + task_material_id);
-    return res.data;
-  }
-
-  async createTaskMaterial(task_id){
-    
-  }
-
-  addTask(task_id){
-    const res = axios.post(API_URL + 'task' + task_id);
-    return res.data;
-  }
-
-  deleteTask(task_id){
-    const res = axios.delete(API_URL + 'task' + task_id);
-    return res.data;
-  }
   
   async getDeadlines(){
     const res = await axios.get(API_URL + 'deadline');
@@ -151,4 +93,4 @@ class ClassService{
   }
 }
 
-export default new ClassService();
+export default new FileHandler();

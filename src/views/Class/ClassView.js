@@ -12,7 +12,6 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ClassView = (props) => {
     const history = useHistory();
-    const [user] = useContext(UserContext);
     const [clas] = useContext(ClassContext);
     const class_id = useParams().class_id;
 
@@ -30,9 +29,9 @@ const ClassView = (props) => {
             <UserLayout>
                 <div className="title px-10 py-10">{clas.class_name}</div>
                 <Card className="default-card px-30 py-30 flex-col justify-start">
-                    <div className="light">Kode Kelas: { clas.class_id }</div>
+                    <div className="light">Kode Kelas: { class_id }</div>
                     <div
-                        className="light flex-row flex-center justify-start my-10"
+                        className="light flex-row flex-center justify-start my-10 text-link"
                         onClick={ viewClassMember }
                     >
                         <FontAwesomeIcon icon={ faUserCircle } size="lg" />
@@ -41,7 +40,7 @@ const ClassView = (props) => {
                     <div className="flex-col flex-wrap">
                         <Card
                             className="violet-card white text-center title-little my-10 py-30"
-                            onClick={ () => open('course') }
+                            onClick={ () => open('lesson') }
                         >
                             Mata Kuliah
                         </Card>

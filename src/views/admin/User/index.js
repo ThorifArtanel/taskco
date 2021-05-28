@@ -11,6 +11,7 @@ const AdminUser = (props) => {
     const history = useHistory();
     
     useEffect(() => {
+        AdminService.getUser()
         setUsers([
             {
                 image: "",
@@ -47,16 +48,16 @@ const AdminUser = (props) => {
                     users.map((user) => (
                         <Card className="default-card flex-row justify-between flex-center my-15">
                             <div className="flex-row flex-center">
-                                { user.image || <img src={Person} alt="Person" height="40px" /> }
+                                { user.user_picture_path || <img src={Person} alt="Person" height="40px" /> }
                                 <div className="mx-10">
-                                    { user.name }
+                                    { user.student_name }
                                 </div>
                             </div>
                             <div className="flex-row flex-center">
-                                <Button className="default-button mx-5" onClick={() => banUser(user.nim) }>
+                                <Button className="default-button mx-5" onClick={() => banUser(user.student_id) }>
                                     Ban
                                 </Button>
-                                <Button className="default-button bg-red mx-5" onClick={() => deleteUser(user.nim) }>
+                                <Button className="default-button bg-red mx-5" onClick={() => deleteUser(user.student_id) }>
                                     Hapus
                                 </Button>
                             </div>

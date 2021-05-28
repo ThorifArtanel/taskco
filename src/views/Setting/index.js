@@ -19,7 +19,7 @@ const Setting = (props) => {
 
     
     useEffect(() => {
-        setClass(ClassService.getCurrentClass());
+        // setClass(ClassService.getCurrentClass());
     },[])
 
     const createClass = () => {

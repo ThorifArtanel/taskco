@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import UserLayout from '../../components/Layout/Userlayout';
 import TextArea from '../../components/textArea';
 import UserService from '../../services/User.service';
-
 const NoteView = () => {
     const history = useHistory();
     const [note, setNote] = useState({});
     const note_id = useParams().note_id;
     const [noteName, setNoteName] = useState('');
-    const [noteDesc, setNoteDesc] = useState('');
+    const [noteContent, setNoteContent] = useState('');
     const [editStatus, setEditStatus] = useState(false);
     
     useEffect(() => {
@@ -22,7 +21,7 @@ const NoteView = () => {
     
     const editNote = () => {
         setNoteName(note.note_name);
-        setNoteDesc(note.note_desc);
+        setNoteContent(note.note_desc);
         setEditStatus(true);
     }
 
@@ -30,8 +29,8 @@ const NoteView = () => {
         UserService.changeNoteVisibility(note_id);
     }
 
-    const updateNoteDesc = (e) => {
-        setNoteDesc(e.target.value);
+    const updateNoteContent = (e) => {
+        setNoteContent(e.target.value);
     }
 
     const updateNoteName = (e) => {
@@ -40,11 +39,10 @@ const NoteView = () => {
 
     const saveNote = () => {
         setNote({
-            note_id: note.note_id,
-            note_name: noteName,
-            note_desc: noteDesc,
-            note_timestamp: UserService.getTimestamp(),
-            publicity: note.publicity
+            s_note_timestamp: note.s_note_timestamp,
+            s_note_name: noteName,
+            s_note_content: noteContent,
+            s_note_publicity: note.publicity
         });
         UserService.updateNote(note);
     }
@@ -70,8 +68,8 @@ const NoteView = () => {
             </div>
             <TextArea
                 className="default-input width-90 mx-30 my-10 px-20 py-20"
-                value={ noteDesc }
-                onChange={ updateNoteDesc }
+                value={ noteContent }
+                onChange={ updateNoteContent }
                 rows="18"
             />
             <div className="text-right">
